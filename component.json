@@ -1,0 +1,407 @@
+{
+    "title": "Stackdriver Logging",
+    "description": "Writes log entries and manages your Logging configuration.",
+    "docsUrl": "https://cloud.google.com/logging/docs/",
+    "url": "https://api.apis.guru/v2/specs/googleapis.com/logging/v2/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://logging.googleapis.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Oauth2": {
+                "label": "Oauth 2.0 authentication",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "logging_entries_list": {
+            "main": "./lib/actions/logging_entries_list.js",
+            "title": "Lists log entries. Use this method to retrieve log entries that originated from a project/folder/organization/billing account. For ways to export log entries, see Exporting Logs.",
+            "description": "Lists log entries. Use this method to retrieve log entries that originated from a project/folder/organization/billing account. For ways to export log entries, see Exporting Logs.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_entries_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_entries_write": {
+            "main": "./lib/actions/logging_entries_write.js",
+            "title": "Writes log entries to Logging. This API method is the only way to send log entries to Logging. This method is used, directly or indirectly, by the Logging agent (fluentd) and all logging libraries configured to use Logging. A single request may contain log entries for a maximum of 1000 different resources (projects, organizations, billing accounts or folders)",
+            "description": "Writes log entries to Logging. This API method is the only way to send log entries to Logging. This method is used, directly or indirectly, by the Logging agent (fluentd) and all logging libraries configured to use Logging. A single request may contain log entries for a maximum of 1000 different resources (projects, organizations, billing accounts or folders)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_entries_write.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_monitoredResourceDescriptors_list": {
+            "main": "./lib/actions/logging_monitoredResourceDescriptors_list.js",
+            "title": "Lists the descriptors for monitored resource types used by Logging.",
+            "description": "Lists the descriptors for monitored resource types used by Logging.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_monitoredResourceDescriptors_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_logs_delete": {
+            "main": "./lib/actions/logging_logs_delete.js",
+            "title": "Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.",
+            "description": "Deletes all the log entries in a log. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_logs_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_projects_metrics_delete": {
+            "main": "./lib/actions/logging_projects_metrics_delete.js",
+            "title": "Deletes a logs-based metric.",
+            "description": "Deletes a logs-based metric.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_projects_metrics_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_projects_metrics_get": {
+            "main": "./lib/actions/logging_projects_metrics_get.js",
+            "title": "Gets a logs-based metric.",
+            "description": "Gets a logs-based metric.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_projects_metrics_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_projects_metrics_update": {
+            "main": "./lib/actions/logging_projects_metrics_update.js",
+            "title": "Creates or updates a logs-based metric.",
+            "description": "Creates or updates a logs-based metric.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_projects_metrics_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_exclusions_delete": {
+            "main": "./lib/actions/logging_organizations_exclusions_delete.js",
+            "title": "Deletes an exclusion.",
+            "description": "Deletes an exclusion.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_exclusions_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_exclusions_get": {
+            "main": "./lib/actions/logging_organizations_exclusions_get.js",
+            "title": "Gets the description of an exclusion.",
+            "description": "Gets the description of an exclusion.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_exclusions_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_exclusions_patch": {
+            "main": "./lib/actions/logging_organizations_exclusions_patch.js",
+            "title": "Changes one or more properties of an existing exclusion.",
+            "description": "Changes one or more properties of an existing exclusion.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_exclusions_patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_exclusions_list": {
+            "main": "./lib/actions/logging_organizations_exclusions_list.js",
+            "title": "Lists all the exclusions in a parent resource.",
+            "description": "Lists all the exclusions in a parent resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_exclusions_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_exclusions_create": {
+            "main": "./lib/actions/logging_organizations_exclusions_create.js",
+            "title": "Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.",
+            "description": "Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_exclusions_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_logs_list": {
+            "main": "./lib/actions/logging_logs_list.js",
+            "title": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+            "description": "Lists the logs in projects, organizations, folders, or billing accounts. Only logs that have entries are listed.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_logs_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_projects_metrics_list": {
+            "main": "./lib/actions/logging_projects_metrics_list.js",
+            "title": "Lists logs-based metrics.",
+            "description": "Lists logs-based metrics.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_projects_metrics_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_projects_metrics_create": {
+            "main": "./lib/actions/logging_projects_metrics_create.js",
+            "title": "Creates a logs-based metric.",
+            "description": "Creates a logs-based metric.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_projects_metrics_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_sinks_list": {
+            "main": "./lib/actions/logging_sinks_list.js",
+            "title": "Lists sinks.",
+            "description": "Lists sinks.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_sinks_list.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_sinks_create": {
+            "main": "./lib/actions/logging_sinks_create.js",
+            "title": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+            "description": "Creates a sink that exports specified log entries to a destination. The export of newly-ingested log entries begins immediately, unless the sink's writer_identity is not permitted to write to the destination. A sink can export log entries only from the resource owning the sink.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_sinks_create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_sinks_delete": {
+            "main": "./lib/actions/logging_sinks_delete.js",
+            "title": "Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.",
+            "description": "Deletes a sink. If the sink has a unique writer_identity, then that service account is also deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_sinks_delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_sinks_get": {
+            "main": "./lib/actions/logging_sinks_get.js",
+            "title": "Gets a sink.",
+            "description": "Gets a sink.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_sinks_get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_organizations_sinks_patch": {
+            "main": "./lib/actions/logging_organizations_sinks_patch.js",
+            "title": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
+            "description": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_organizations_sinks_patch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "logging_sinks_update": {
+            "main": "./lib/actions/logging_sinks_update.js",
+            "title": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
+            "description": "Updates a sink. This method replaces the following fields in the existing sink with values from the new sink: destination, and filter.The updated sink might also have a new writer_identity; see the unique_writer_identity field.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/logging_sinks_update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
